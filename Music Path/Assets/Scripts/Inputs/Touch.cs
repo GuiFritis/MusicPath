@@ -40,7 +40,7 @@ public partial class @Touch : IInputActionCollection2, IDisposable
                     ""name"": ""PrimaryPosition"",
                     ""type"": ""PassThrough"",
                     ""id"": ""031279bd-e690-465c-b157-80dbe926b3da"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -61,7 +61,7 @@ public partial class @Touch : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8023dc73-f715-4ed0-a13a-77496b16c293"",
-                    ""path"": ""<Touchscreen>/position/y"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
