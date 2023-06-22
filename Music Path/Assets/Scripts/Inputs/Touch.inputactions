@@ -1,0 +1,54 @@
+{
+    "name": "Touch",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "e75c11db-2645-483a-abf9-5179d6b6935d",
+            "actions": [
+                {
+                    "name": "PrimaryContact",
+                    "type": "Button",
+                    "id": "fade9db0-d783-4641-bfda-cef031e50263",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PrimaryPosition",
+                    "type": "PassThrough",
+                    "id": "031279bd-e690-465c-b157-80dbe926b3da",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "39becefc-54c4-47de-8ccb-fe1b264e80a6",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryContact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8023dc73-f715-4ed0-a13a-77496b16c293",
+                    "path": "<Touchscreen>/position/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
