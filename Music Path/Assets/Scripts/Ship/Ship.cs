@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Ship : MonoBehaviour
 {
     public List<Note> notes = new List<Note>();
-    private int _currentNote = 5;
+    [Header("Move Animation")]
+    public float moveDuration = .3f;
+    public Ease moveEase = Ease.OutBack;
+    public float edgeMove = .2f;
+    private int _currentNote = 4;
 
     void Awake()
     {
         TouchManager.Instance.OnMoveSwipe += Move;
+        _currentNote = 4;
     }
 
     public void Move(int direction)
@@ -19,13 +25,21 @@ public class Ship : MonoBehaviour
         {
             ChangeNote(note);
         }
+        else
+        {
+            transform.DOKill();
+            transform.DOMoveY(edgeMove * direction, moveDuration/2).SetRelative().OnComplete(
+                () => transform.DOMoveY(notes[_currentNote].transform.position.y, moveDuration/2).SetEase(moveEase)
+            );
+        }
     }
 
     private void ChangeNote(int note)
     {
         _currentNote = note;
         notes[_currentNote].PlayNote();
-        transform.position = notes[_currentNote].transform.position;
+        transform.DOKill();
+        transform.DOMoveY(notes[_currentNote].transform.position.y, moveDuration).SetEase(moveEase);
     }
 
     private int GetCurrentNote()
