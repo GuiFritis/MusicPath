@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class Ship : MonoBehaviour
 {
-    public List<Note> notes = new List<Note>();
     [Header("Move Animation")]
     public float moveDuration = .3f;
     public Ease moveEase = Ease.OutBack;
@@ -21,7 +20,7 @@ public class Ship : MonoBehaviour
     public void Move(int direction)
     {
         int note = _currentNote + direction;
-        if(note >= 0 && note < notes.Count)
+        if(note >= 0 && note < Melody.Instance.notes.Count)
         {
             ChangeNote(note);
         }
@@ -29,7 +28,7 @@ public class Ship : MonoBehaviour
         {
             transform.DOKill();
             transform.DOMoveY(edgeMove * direction, moveDuration/2).SetRelative().OnComplete(
-                () => transform.DOMoveY(notes[_currentNote].transform.position.y, moveDuration/2).SetEase(moveEase)
+                () => transform.DOMoveY(Melody.Instance.notes[_currentNote].transform.position.y, moveDuration/2).SetEase(moveEase)
             );
         }
     }
@@ -37,9 +36,9 @@ public class Ship : MonoBehaviour
     private void ChangeNote(int note)
     {
         _currentNote = note;
-        notes[_currentNote].PlayNote();
+        Melody.Instance.notes[_currentNote].PlayNote();
         transform.DOKill();
-        transform.DOMoveY(notes[_currentNote].transform.position.y, moveDuration).SetEase(moveEase);
+        transform.DOMoveY(Melody.Instance.notes[_currentNote].transform.position.y, moveDuration).SetEase(moveEase);
     }
 
     private int GetCurrentNote()
