@@ -20,7 +20,7 @@ public class Ship : MonoBehaviour
     public void Move(int direction)
     {
         int note = _currentNote + direction;
-        if(note >= 0 && note < Melody.Instance.notes.Count)
+        if(note >= 0 && note < NotesManager.Instance.notes.Count)
         {
             ChangeNote(note);
         }
@@ -28,7 +28,7 @@ public class Ship : MonoBehaviour
         {
             transform.DOKill();
             transform.DOMoveY(edgeMove * direction, moveDuration/2).SetRelative().OnComplete(
-                () => transform.DOMoveY(Melody.Instance.notes[_currentNote].transform.position.y, moveDuration/2).SetEase(moveEase)
+                () => transform.DOMoveY(NotesManager.Instance.notes[_currentNote].transform.position.y, moveDuration/2).SetEase(moveEase)
             );
         }
     }
@@ -36,9 +36,9 @@ public class Ship : MonoBehaviour
     private void ChangeNote(int note)
     {
         _currentNote = note;
-        Melody.Instance.notes[_currentNote].PlayNote();
+        NotesManager.Instance.notes[_currentNote].PlayNote();
         transform.DOKill();
-        transform.DOMoveY(Melody.Instance.notes[_currentNote].transform.position.y, moveDuration).SetEase(moveEase);
+        transform.DOMoveY(NotesManager.Instance.notes[_currentNote].transform.position.y, moveDuration).SetEase(moveEase);
     }
 
     private int GetCurrentNote()

@@ -15,8 +15,6 @@ public class Melody : Singleton<Melody>
     public float rhythim = .2f;
     private bool _playing = false;
     private int _lastNote = 4;
-    [Space]
-    public List<Note> notes = new List<Note>();
     [Header("Sliding Notes")]
     public SlidingNote slidingNotes_PFB;
     public float spawnX = 14f;
@@ -56,10 +54,10 @@ public class Melody : Singleton<Melody>
 
     private void PreviewMelody()
     {
-        int noteIndex = Random.Range(0, notes.Count);
+        int noteIndex = Random.Range(0, NotesManager.Instance.notes.Count);
         while(noteIndex == _lastNote)
         {
-            noteIndex = Random.Range(0, notes.Count);
+            noteIndex = Random.Range(0, NotesManager.Instance.notes.Count);
         }
         StartCoroutine(PlayMelody(noteIndex));
     }
@@ -69,7 +67,7 @@ public class Melody : Singleton<Melody>
         while (_lastNote != noteIndex)
         {
             _lastNote += (_lastNote - noteIndex > 0 ? -1 : 1);
-            notes[_lastNote].PlayNote();
+            NotesManager.Instance.notes[_lastNote].PlayNote();
             yield return new WaitForSeconds(rhythim);
         }
         SlideNotes();
@@ -77,11 +75,15 @@ public class Melody : Singleton<Melody>
 
     private void SlideNotes()
     {
-        for (int i = 0; i < notes.Count; i ++)
+        for (int i = 0; i < NotesManager.Instance.notes.Count; i ++)
         {
             if(i != _lastNote)
             {
-                var slidingNote = Instantiate(slidingNotes_PFB, new Vector2(spawnX, notes[i].transform.position.y), Quaternion.identity);
+                var slidingNote = Instantiate(
+                    slidingNotes_PFB, 
+                    new Vector2(spawnX, NotesManager.Instance.notes[i].transform.position.y), 
+                    Quaternion.identity
+                );
                 slidingNote.speed = _currentSlidingSpeed;
                 slidingNote.xDyingPoint = -spawnX;
             }

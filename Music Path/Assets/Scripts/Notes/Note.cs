@@ -10,4 +10,9 @@ public class Note : MonoBehaviour
     {
         
     }
+
+    public void SetAudio(AudioClip audio)
+    {
+        noteAudio = audio;
+    }
 }

@@ -1,18 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Padrao.Core.Singleton;
+using Padrao.Utils;
 
-public class GameManager : MonoBehaviour
+[DefaultExecutionOrder(-2)]
+public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<SO_Tone> tones;
+    public string keyPrefTone = "Tone";
+    
+    private int _tone = 0;
+
+    protected override void Awake() 
     {
-        
+        base.Awake();
+        _tone = PlayerPrefs.GetInt(keyPrefTone, 0);
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GetToneName()
     {
-        
+        if(_tone == -1)
+        {
+            return "Rand";
+        }
+        return tones[_tone].name;
+    }
+
+    public SO_Tone GetTone()
+    {
+        if(_tone == -1)
+        {
+            return tones.GetRandom();
+        }
+        return tones[_tone];
+    }
+
+    public void IncreaseTone()
+    {
+        _tone++;
+        if(_tone == tones.Count)
+        {
+            _tone = -1;
+        }
+        PlayerPrefs.SetInt(keyPrefTone, _tone);
     }
 }
