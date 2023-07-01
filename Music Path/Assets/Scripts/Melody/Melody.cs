@@ -10,6 +10,8 @@ public class Melody : Singleton<Melody>
     [Tooltip("Volume at which player's note will get when melody is playing")]
     public float targetVolume = -20f;
     [Space]
+    public Ship ship;
+    [Space]
     public float startSpeed = 4f;
     private float _currentSpeed = 4f;
     private float _timer = 0f;
@@ -18,7 +20,7 @@ public class Melody : Singleton<Melody>
     [Tooltip("Time between notes playing")]
     public float rhythim = .2f;
     private bool _playing = false;
-    private int _lastNote = 4;
+    private int _lastNote;
     [Header("Sliding Notes")]
     public float spawnX = 14f;
     public float slidingSpeed = 8f;
@@ -30,7 +32,6 @@ public class Melody : Singleton<Melody>
     {
         _currentSpeed = startSpeed;
         _currentSlidingSpeed = slidingSpeed;
-        _lastNote = 4;
     }
 
     void Update()
@@ -57,6 +58,7 @@ public class Melody : Singleton<Melody>
 
     private void PreviewMelody()
     {
+        _lastNote = ship.GetCurrentNote();
         int noteIndex = Random.Range(0, NotesManager.Instance.notes.Count);
         while(noteIndex == _lastNote)
         {

@@ -15,6 +15,7 @@ public class Ship : MonoBehaviour
     {
         TouchManager.Instance.OnMoveSwipe += Move;
         _currentNote = 4;
+        transform.position = new Vector2(transform.position.x, NotesManager.Instance.notes[_currentNote].transform.position.y);
     }
 
     public void Move(int direction)
@@ -41,7 +42,7 @@ public class Ship : MonoBehaviour
         transform.DOMoveY(NotesManager.Instance.notes[_currentNote].transform.position.y, moveDuration).SetEase(moveEase);
     }
 
-    private int GetCurrentNote()
+    public int GetCurrentNote()
     {
         return _currentNote;
     }
