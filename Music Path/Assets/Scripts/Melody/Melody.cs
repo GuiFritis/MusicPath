@@ -20,7 +20,6 @@ public class Melody : Singleton<Melody>
     private bool _playing = false;
     private int _lastNote = 4;
     [Header("Sliding Notes")]
-    public SlidingNote slidingNotes_PFB;
     public float spawnX = 14f;
     public float slidingSpeed = 8f;
     public float slidingSpeedUp = .2f;
@@ -84,13 +83,10 @@ public class Melody : Singleton<Melody>
         {
             if(i != _lastNote)
             {
-                var slidingNote = Instantiate(
-                    slidingNotes_PFB, 
-                    new Vector2(spawnX, NotesManager.Instance.notes[i].transform.position.y), 
-                    Quaternion.identity
+                SlidingNotePool.Instance.SlideNote(
+                    new Vector2(spawnX, NotesManager.Instance.notes[i].transform.position.y),
+                    _currentSlidingSpeed
                 );
-                slidingNote.speed = _currentSlidingSpeed;
-                slidingNote.xDyingPoint = -spawnX;
             }
         }
         _playing = false;

@@ -45,4 +45,9 @@ public class Ship : MonoBehaviour
     {
         return _currentNote;
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Collide");
+    }
 }

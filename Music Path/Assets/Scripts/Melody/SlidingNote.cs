@@ -12,7 +12,7 @@ public class SlidingNote : MonoBehaviour
         transform.Translate(Vector2.left * speed * Time.deltaTime);
         if(transform.position.x < xDyingPoint)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

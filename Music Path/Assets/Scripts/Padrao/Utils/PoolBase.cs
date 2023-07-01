@@ -74,6 +74,6 @@ public abstract class PoolBase<T, X> : MonoBehaviour where T : Behaviour where X
 
     protected virtual bool CheckItem(T item)
     {
-        return item.gameObject.activeInHierarchy;
+        return !item.gameObject.activeInHierarchy;
     }
 }
