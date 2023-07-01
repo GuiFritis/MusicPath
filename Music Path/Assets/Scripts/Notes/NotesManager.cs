@@ -14,7 +14,7 @@ public class NotesManager : Singleton<NotesManager>
         var tone = GameManager.Instance.GetTone();
         for (int i = 0; i < notes.Count; i++)
         {
-            notes[i].SetAudio(tone.notes[i]);
+            notes[i].SetAudioClip(tone.notes[i]);
         }
     }
 }

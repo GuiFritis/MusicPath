@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Padrao.Core.Singleton;
-using Padrao.Core.Utils;
+using Sounds;
 
 public class Melody : Singleton<Melody>
 {
+    public VolumeChangeHelper volumeChangeHelper;
+    [Tooltip("Volume at which player's note will get when melody is playing")]
+    public float targetVolume = -20f;
+    [Space]
     public float startSpeed = 4f;
     private float _currentSpeed = 4f;
     private float _timer = 0f;
@@ -59,6 +63,7 @@ public class Melody : Singleton<Melody>
         {
             noteIndex = Random.Range(0, NotesManager.Instance.notes.Count);
         }
+        volumeChangeHelper.ChangeMixerVolume(targetVolume, rhythim, Mathf.Abs(_lastNote - noteIndex) * rhythim);
         StartCoroutine(PlayMelody(noteIndex));
     }
 
@@ -67,7 +72,7 @@ public class Melody : Singleton<Melody>
         while (_lastNote != noteIndex)
         {
             _lastNote += (_lastNote - noteIndex > 0 ? -1 : 1);
-            NotesManager.Instance.notes[_lastNote].PlayNote();
+            Audio_Pool.Instance.Play(NotesManager.Instance.notes[_lastNote].GetNoteAudioClip());
             yield return new WaitForSeconds(rhythim);
         }
         SlideNotes();

@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sounds;
 
 public class Note : MonoBehaviour
 {
-    public AudioClip noteAudio;
+    public AudioSource noteAudio;
 
     public void PlayNote()
     {
-        
+        if(noteAudio != null)
+        {
+            noteAudio.Play();
+        }
     }
 
-    public void SetAudio(AudioClip audio)
+    public AudioClip GetNoteAudioClip()
     {
-        noteAudio = audio;
+        return noteAudio.clip;
+    }
+
+    public void SetAudioClip(AudioClip audio)
+    {
+        noteAudio.clip = audio;
     }
 }
