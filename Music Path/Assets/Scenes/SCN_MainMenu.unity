@@ -877,8 +877,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1331964377}
-        m_TargetAssemblyTypeName: Padrao.Utils.Load_Scene, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_TargetAssemblyTypeName: Padrao.Utils.LoadScene, Assembly-CSharp
+        m_MethodName: LoadSceneByIndex
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

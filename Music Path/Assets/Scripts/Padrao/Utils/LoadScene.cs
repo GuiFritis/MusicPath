@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 namespace Padrao.Utils
 {
-	public class Load_Scene : MonoBehaviour
+	public class LoadScene : MonoBehaviour
 	{
-		public void LoadScene(string sceneName)
+		public void LoadSceneByName(string sceneName)
 		{
 			SceneManager.LoadScene(sceneName);
 		}
 
-		public void LoadScene(int sceneIndex)
+		public void LoadSceneByIndex(int sceneIndex)
 		{
 			SceneManager.LoadScene(sceneIndex);
 		}

@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 namespace Sounds
 {
-    public class Audio_Pool : PoolBase<AudioSource, Audio_Pool>
+    public class AudioPool : PoolBase<AudioSource, AudioPool>
     {
         public void Play(AudioClip clip)
         {

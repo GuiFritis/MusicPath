@@ -72,7 +72,7 @@ public class Melody : Singleton<Melody>
         while (_lastNote != noteIndex)
         {
             _lastNote += (_lastNote - noteIndex > 0 ? -1 : 1);
-            Audio_Pool.Instance.Play(NotesManager.Instance.notes[_lastNote].GetNoteAudioClip());
+            AudioPool.Instance.Play(NotesManager.Instance.notes[_lastNote].GetNoteAudioClip());
             yield return new WaitForSeconds(rhythim);
         }
         SlideNotes();
