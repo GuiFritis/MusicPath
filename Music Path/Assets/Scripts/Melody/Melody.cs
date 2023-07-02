@@ -23,6 +23,8 @@ public class Melody : Singleton<Melody>
     private bool _playing = false;
     private int _lastNote;
     [Header("Sliding Notes")]
+    [Tooltip("Delay added per note")]
+    public float slideDelay = .05f;
     public float spawnX = 14f;
     public float slidingSpeed = 8f;
     public float slidingSpeedUp = .2f;
@@ -62,7 +64,7 @@ public class Melody : Singleton<Melody>
     {
         _lastNote = ship.GetCurrentNote();
         int noteIndex = Random.Range(0, NotesManager.Instance.notes.Count);
-        while(noteIndex == _lastNote)
+        while(Mathf.Abs(noteIndex - _lastNote) <= 1)
         {
             noteIndex = Random.Range(0, NotesManager.Instance.notes.Count);
         }
@@ -71,13 +73,16 @@ public class Melody : Singleton<Melody>
     }
 
     private IEnumerator PlayMelody(int noteIndex)
-    {        
+    {   
+        float notesAmount = 0f;
         while (_lastNote != noteIndex)
         {
             _lastNote += (_lastNote - noteIndex > 0 ? -1 : 1);
             AudioPool.Instance.Play(NotesManager.Instance.notes[_lastNote].GetNoteAudioClip());
+            notesAmount++;
             yield return new WaitForSeconds(rhythim);
         }
+        yield return new WaitForSeconds(notesAmount * slideDelay);
         SlideNotes();
     }
 
