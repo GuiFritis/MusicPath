@@ -37,8 +37,6 @@ public class TouchManager : Singleton<TouchManager>
     {
         _input = new Touch();
 
-        _input.Enable();
-
         _input.Gameplay.PrimaryContact.started += StartTouch;
         _input.Gameplay.PrimaryContact.canceled += EndTouch;
     }
@@ -67,5 +65,14 @@ public class TouchManager : Singleton<TouchManager>
         {
             Gizmos.DrawWireSphere(Camera.main.ScreenToWorldPoint(_input.Gameplay.PrimaryPosition.ReadValue<Vector2>()), 0.5f);
         }
+    }
+
+    void OnEnable() 
+    {
+        _input.Enable();
+    }
+
+    void OnDisable() {
+        _input.Disable();
     }
 }

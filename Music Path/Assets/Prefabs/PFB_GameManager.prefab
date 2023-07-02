@@ -50,3 +50,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c6784f9ef5cfa44996e5d02284f3ea0, type: 2}
   - {fileID: 11400000, guid: 5c469dff1e5dfd848adf64483a9e3aa4, type: 2}
   keyPrefTone: Tone
+  playerShip: {fileID: 0}
+  gameOverScript: {fileID: 0}

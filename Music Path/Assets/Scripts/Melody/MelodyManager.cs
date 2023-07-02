@@ -4,7 +4,7 @@ using UnityEngine;
 using Padrao.Core.Singleton;
 using Sounds;
 
-public class Melody : Singleton<Melody>
+public class MelodyManager : Singleton<MelodyManager>
 {
     public SOInt score;
     public VolumeChangeHelper volumeChangeHelper;

@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
 {
     public List<SO_Tone> tones;
     public string keyPrefTone = "Tone";
+    public Ship playerShip;
+    public GameOverScreen gameOverScript;
     
     private int _tone = 0;
 
@@ -16,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         _tone = PlayerPrefs.GetInt(keyPrefTone, 0);
+        playerShip.OnDie += GameOver;
     }
 
     public string GetToneName()
@@ -44,5 +47,14 @@ public class GameManager : Singleton<GameManager>
             _tone = -1;
         }
         PlayerPrefs.SetInt(keyPrefTone, _tone);
+    }
+
+    public void GameOver()
+    {
+        ScreenController.Instance.HideAllScreens();
+        ScreenController.Instance.ShowScreen(GameplayScreenType.GAME_OVER);
+        TouchManager.Instance.enabled = false;
+        MelodyManager.Instance.enabled = false;
+        gameOverScript?.GameOver(true);
     }
 }

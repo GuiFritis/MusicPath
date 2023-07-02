@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,13 @@ public class Ship : MonoBehaviour
     [Header("Move Animation")]
     public float moveDuration = .3f;
     public Ease moveEase = Ease.OutBack;
+    public Action OnDie;
     public float edgeMove = .2f;
     private int _currentNote = 4;
 
     void Awake()
     {
+        GameManager.Instance.playerShip = this;
         TouchManager.Instance.OnMoveSwipe += Move;
         _currentNote = 4;
         transform.position = new Vector2(transform.position.x, NotesManager.Instance.notes[_currentNote].transform.position.y);
@@ -49,6 +52,12 @@ public class Ship : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collide");
+        Die();
+    }
+
+    private void Die()
+    {
+        transform.DOScale(Vector3.zero, .3f).SetEase(Ease.InBounce);
+        OnDie?.Invoke();
     }
 }
