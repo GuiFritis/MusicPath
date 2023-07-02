@@ -6,6 +6,7 @@ using Sounds;
 
 public class Melody : Singleton<Melody>
 {
+    public SOInt score;
     public VolumeChangeHelper volumeChangeHelper;
     [Tooltip("Volume at which player's note will get when melody is playing")]
     public float targetVolume = -20f;
@@ -30,6 +31,7 @@ public class Melody : Singleton<Melody>
 
     void Start()
     {
+        score.Value = 0;
         _currentSpeed = startSpeed;
         _currentSlidingSpeed = slidingSpeed;
     }
@@ -91,6 +93,7 @@ public class Melody : Singleton<Melody>
                 );
             }
         }
+        score.Value++;
         _playing = false;
     }
 
