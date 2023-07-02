@@ -22,7 +22,7 @@ public class GameOverScreen : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Instance.gameOverScript = this;
+        GameManager.Instance.SetGameOverScreen(this);
 
         _panelColor = panel.color;
         panel.color = Color.clear;

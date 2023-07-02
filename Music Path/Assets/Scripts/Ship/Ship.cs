@@ -15,7 +15,7 @@ public class Ship : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Instance.playerShip = this;
+        GameManager.Instance.SetPlayerShip(this);
         TouchManager.Instance.OnMoveSwipe += Move;
         _currentNote = 4;
         transform.position = new Vector2(transform.position.x, NotesManager.Instance.notes[_currentNote].transform.position.y);
