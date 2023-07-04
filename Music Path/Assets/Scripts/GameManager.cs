@@ -65,6 +65,6 @@ public class GameManager : Singleton<GameManager>
         ScreenController.Instance.ShowScreen(GameplayScreenType.GAME_OVER);
         TouchManager.Instance.enabled = false;
         MelodyManager.Instance.enabled = false;
-        _gameOverScript?.GameOver(true);
+        _gameOverScript?.GameOver();
     }
 }

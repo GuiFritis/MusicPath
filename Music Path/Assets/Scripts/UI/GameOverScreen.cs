@@ -1,12 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Save;
 
 public class GameOverScreen : MonoBehaviour
 {
+    public TextMeshProUGUI scoreText;
+    public SOInt score;
     public float duration = .3f;
     public Image panel;
     private Color _panelColor;
@@ -41,24 +43,30 @@ public class GameOverScreen : MonoBehaviour
         toneButton.transform.localScale = Vector3.zero;
     }
 
-    public void GameOver(bool newHighscore = false)
+    public void GameOver()
     {
-        StartCoroutine(ShowGameOverScreen(newHighscore));
+        StartCoroutine(ShowGameOverScreen());
     }
 
-    private IEnumerator ShowGameOverScreen(bool newHighscore)
+    private IEnumerator ShowGameOverScreen()
     {
         panel.DOColor(_panelColor, duration);
         yield return new WaitForSeconds(duration);
+
+        scoreText.text = (score.Value).ToString();
         scoreBox.transform.DOScale(_scoreBoxScale, duration).SetEase(Ease.OutBounce);
         yield return new WaitForSeconds(duration);
+
+        bool newHighscore = score.Value > Save.SaveManager.Instance.GetHighscore();
         if(newHighscore)
         {
+            Save.SaveManager.Instance.NewHighscore(score.Value);
             scoreBox.transform.DOMoveY(scoreBoxOffset, duration).SetRelative(true);
             highscore.gameObject.SetActive(true);
             highscore.transform.DOScale(_highscoreScale, duration).SetEase(Ease.OutBounce);
             yield return new WaitForSeconds(duration);
         }
+
         playButton.transform.DOScale(_playBtnScale, duration).SetEase(Ease.OutBounce);
         toneButton.transform.DOScale(_toneBtnScale, duration).SetEase(Ease.OutBounce);
     }
