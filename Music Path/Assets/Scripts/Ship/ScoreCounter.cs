@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScoreCounter : MonoBehaviour
 {
     public Ship ship;
+    public ParticleSystem scoreVfx;
     public float rayDistance = 0.5f;
     public float offsetX = -1.5f;
     public LayerMask slidingNoteLayer;
@@ -29,6 +30,7 @@ public class ScoreCounter : MonoBehaviour
             if(ray.collider != null)
             {
                 MelodyManager.Instance.PointScored();
+                scoreVfx?.Play();
                 _timer = 0f;
             }
         }

@@ -152,7 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2b44405853f0047b7e272665179430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ship: {fileID: 7124946972283240841}
+  scoreVfx: {fileID: 0}
   rayDistance: 1.2
+  offsetX: -1
   slidingNoteLayer:
     serializedVersion: 2
     m_Bits: 128
