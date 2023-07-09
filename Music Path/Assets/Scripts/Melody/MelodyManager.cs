@@ -22,6 +22,7 @@ public class MelodyManager : Singleton<MelodyManager>
     public float rhythim = .2f;
     private bool _playing = false;
     private int _lastNote;
+    private int _currentNote;
     [Header("Sliding Notes")]
     [Tooltip("Delay added per note")]
     public float slideDelay = .05f;
@@ -63,24 +64,25 @@ public class MelodyManager : Singleton<MelodyManager>
     private void PreviewMelody()
     {
         _lastNote = ship.GetCurrentNote();
-        int noteIndex = Random.Range(0, NotesManager.Instance.notes.Count);
-        while(Mathf.Abs(noteIndex - _lastNote) <= 1)
+        _currentNote = Random.Range(0, NotesManager.Instance.notes.Count);
+        while(Mathf.Abs(_currentNote - _lastNote) <= 1)
         {
-            noteIndex = Random.Range(0, NotesManager.Instance.notes.Count);
+            _currentNote = Random.Range(0, NotesManager.Instance.notes.Count);
         }
-        volumeChangeHelper.ChangeMixerVolume(targetVolume, rhythim, Mathf.Abs(_lastNote - noteIndex) * rhythim);
-        StartCoroutine(PlayMelody(noteIndex));
+        volumeChangeHelper.ChangeMixerVolume(targetVolume, rhythim, Mathf.Abs(_lastNote - _currentNote) * rhythim);
+        StartCoroutine(PlayMelody(_lastNote, _currentNote, rhythim));
     }
 
-    private IEnumerator PlayMelody(int noteIndex)
+    private IEnumerator PlayMelody(int currentNoteIndex, int targetNoteIndex, float timing)
     {   
         float notesAmount = 0f;
-        while (_lastNote != noteIndex)
+        int curNote = currentNoteIndex;
+        while (curNote != targetNoteIndex)
         {
-            _lastNote += (_lastNote - noteIndex > 0 ? -1 : 1);
-            AudioPool.Instance.Play(NotesManager.Instance.notes[_lastNote].GetNoteAudioClip());
+            curNote += (curNote - targetNoteIndex > 0 ? -1 : 1);
+            AudioPool.Instance.Play(NotesManager.Instance.notes[curNote].GetNoteAudioClip());
             notesAmount++;
-            yield return new WaitForSeconds(rhythim);
+            yield return new WaitForSeconds(timing);
         }
         yield return new WaitForSeconds(notesAmount * slideDelay);
         SlideNotes();
@@ -90,7 +92,7 @@ public class MelodyManager : Singleton<MelodyManager>
     {
         for (int i = 0; i < NotesManager.Instance.notes.Count; i ++)
         {
-            if(i != _lastNote)
+            if(i != _currentNote)
             {
                 SlidingNotePool.Instance.SlideNote(
                     new Vector2(spawnX, NotesManager.Instance.notes[i].transform.position.y),
@@ -98,8 +100,12 @@ public class MelodyManager : Singleton<MelodyManager>
                 );
             }
         }
-        score.Value++;
         _playing = false;
+    }
+
+    public void PointScored()
+    {
+        score.Value++;
     }
 
     private void OnDrawGizmosSelected() 

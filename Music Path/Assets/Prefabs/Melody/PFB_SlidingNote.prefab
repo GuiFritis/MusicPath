@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5479409506350636944}
   - component: {fileID: 2397459001855502918}
   - component: {fileID: 6127979440967079784}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PFB_SlidingNote
   m_TagString: Untagged
   m_Icon: {fileID: 0}

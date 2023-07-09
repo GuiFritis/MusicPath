@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2790718957904639172}
   - component: {fileID: 8843005303158552019}
-  - component: {fileID: 7124946972283240841}
   - component: {fileID: 5334255569883969394}
   - component: {fileID: 5924055176195996557}
+  - component: {fileID: 7124946972283240841}
+  - component: {fileID: 3363262953094239804}
   m_Layer: 0
   m_Name: PFB_Player
   m_TagString: Untagged
@@ -87,21 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7124946972283240841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7288162026200685206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99248ae954486e4e896f14033fadfe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDuration: 0.3
-  moveEase: 27
-  edgeMove: 0.2
 --- !u!58 &5334255569883969394
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,3 +125,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7124946972283240841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288162026200685206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99248ae954486e4e896f14033fadfe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDuration: 0.3
+  moveEase: 27
+  edgeMove: 0.2
+--- !u!114 &3363262953094239804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288162026200685206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2b44405853f0047b7e272665179430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayDistance: 1.2
+  slidingNoteLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  waitingTime: 0.7
