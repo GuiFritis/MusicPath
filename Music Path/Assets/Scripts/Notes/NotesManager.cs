@@ -6,7 +6,7 @@ using Padrao.Core.Singleton;
 [DefaultExecutionOrder(-1)]
 public class NotesManager : Singleton<NotesManager>
 {
-    public List<Note> notes = new List<Note>();
+    public List<Note> notes = new();
 
     protected override void Awake()
     {

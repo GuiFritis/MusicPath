@@ -7,6 +7,7 @@ using Padrao.Core.Singleton;
 public class TouchManager : Singleton<TouchManager>
 {
     public Action<int> OnMoveSwipe;
+    public Action<Vector3> OnTouchStart;
     public float distanceToMove = 0.5f;
     public float timeRange = 0.5f;
     private float _timer = 0f;
@@ -46,6 +47,7 @@ public class TouchManager : Singleton<TouchManager>
         _timer = 0f;
         _touching = true;
         _startTouchPosition = Camera.main.ScreenToWorldPoint(_input.Gameplay.PrimaryPosition.ReadValue<Vector2>());
+        OnTouchStart?.Invoke(_startTouchPosition);
     }
 
     private void EndTouch(InputAction.CallbackContext ctx)
