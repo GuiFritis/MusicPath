@@ -39,6 +39,7 @@ public class MelodyManager : Singleton<MelodyManager>
         score.Value = 0;
         _currentSpeed = startSpeed;
         _currentSlidingSpeed = slidingSpeed;
+        _timer = _currentNote - 1.5f;
     }
 
     void Update()
@@ -121,6 +122,7 @@ public class MelodyManager : Singleton<MelodyManager>
         _inTutorialMode = false;
         _currentSlidingSpeed = slidingSpeed;
         score.Value = 0;
+        _timer = _currentSpeed - 1f;
     }
 
     private void OnDrawGizmosSelected() 

@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
 
 namespace Tutorial
@@ -13,13 +11,13 @@ namespace Tutorial
         public TextMeshProUGUI nextStepTextMesh;
         public List<string> nextStepTexts = new();
 
-        private int _tries = 0;
+        private int _tries = -1;
         private TutorialManager _tutorialManager;
 
         public override void StartStep(TutorialManager manager)
         {
             base.StartStep(manager);
-            MelodyManager.Instance.PreviewMelody();
+            Invoke(nameof(PreviewMelody), 1f);
             MelodyManager.Instance.score.OnValueChanged += Success;
             _tutorialManager = manager;
             _tutorialManager.ship.EnableMove();
@@ -51,7 +49,7 @@ namespace Tutorial
             {
                 nextStepTextMesh.text = nextStepTexts[_tries];
             }
-            MelodyManager.Instance.PreviewMelody();
+            Invoke(nameof(PreviewMelody), 1f);
             Invoke(nameof(EnableScoreCounter), 1f);
         }
 
@@ -63,6 +61,11 @@ namespace Tutorial
         private void Success(int score)
         {
             _tutorialManager.NextStep();
+        }
+
+        private void PreviewMelody()
+        {            
+            MelodyManager.Instance.PreviewMelody();
         }
     }
 }
