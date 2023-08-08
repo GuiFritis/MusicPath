@@ -16,7 +16,15 @@ namespace Tutorial
         {
             base.StartStep(manager);
             _tutorialManager = manager;
+            _tutorialManager.ship.EnableMove();
             TouchManager.Instance.OnMoveSwipe += CheckSwipe;
+        }
+
+        public override void EndStep()
+        {
+            base.EndStep();
+            _tutorialManager.ship.DisableMove();
+            TouchManager.Instance.OnMoveSwipe -= CheckSwipe;
         }
 
         public override bool CheckStepCompleted()
@@ -29,7 +37,6 @@ namespace Tutorial
             if(direction == swipeDirection)
             {
                 _swiped = true;
-                TouchManager.Instance.OnMoveSwipe -= CheckSwipe;
                 _tutorialManager.NextStep();
             }
         }

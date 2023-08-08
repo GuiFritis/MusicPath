@@ -8,7 +8,7 @@ namespace Tutorial
     {
         public List<TutorialStep> tutorialSteps = new();
         public float tutorialSlidingSpeed = 5f;
-        public SOInt score;
+        public Ship ship;
 
         private int _currentStep = 0;
 
@@ -17,6 +17,7 @@ namespace Tutorial
             MelodyManager.Instance.TutorialMode(tutorialSlidingSpeed);
             TouchManager.Instance.OnTouchStart += NextStep;
             tutorialSteps[_currentStep].StartStep(this);
+            ship.TutorialMode();
         }
 
         public void NextStep()
@@ -25,17 +26,18 @@ namespace Tutorial
             {
                 tutorialSteps[_currentStep].EndStep();
                 _currentStep++;
-            }
-
-            if(_currentStep < tutorialSteps.Count)
-            {
-                tutorialSteps[_currentStep].StartStep(this);
-            }
-            else
-            {
-                TouchManager.Instance.OnTouchStart -= NextStep;
-                MelodyManager.Instance.EndTutorialMode();
-                gameObject.SetActive(false);
+                
+                if(_currentStep < tutorialSteps.Count)
+                {
+                    tutorialSteps[_currentStep].StartStep(this);
+                }
+                else
+                {
+                    TouchManager.Instance.OnTouchStart -= NextStep;
+                    MelodyManager.Instance.EndTutorialMode();
+                    ship.EndTutorialMode();
+                    gameObject.SetActive(false);
+                }
             }
         }
 

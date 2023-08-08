@@ -11,7 +11,8 @@ public class MelodyManager : Singleton<MelodyManager>
     [Tooltip("Volume at which player's note will get when melody is playing")]
     public float targetVolume = -20f;
     [Space]
-    public Ship ship;
+    [SerializeField]
+    private Ship _ship;
     [Space]
     public float startSpeed = 4f;
     private float _currentSpeed = 4f;
@@ -31,6 +32,7 @@ public class MelodyManager : Singleton<MelodyManager>
     public float slidingSpeedUp = .2f;
     public float maxSlidingSpeed = 40f;
     private float _currentSlidingSpeed = 8f;
+    private bool _inTutorialMode = false;
 
     void Start()
     {
@@ -41,7 +43,7 @@ public class MelodyManager : Singleton<MelodyManager>
 
     void Update()
     {
-        if(!_playing)
+        if(!_playing && !_inTutorialMode)
         {
             _timer += Time.deltaTime;
             if(_timer >= _currentSpeed)
@@ -61,9 +63,9 @@ public class MelodyManager : Singleton<MelodyManager>
         }
     }
 
-    private void PreviewMelody()
+    public void PreviewMelody()
     {
-        _lastNote = ship.GetCurrentNote();
+        _lastNote = _ship.GetCurrentNote();
         _currentNote = Random.Range(0, NotesManager.Instance.notes.Count);
         while(Mathf.Abs(_currentNote - _lastNote) <= 1)
         {
@@ -79,7 +81,7 @@ public class MelodyManager : Singleton<MelodyManager>
         int curNote = currentNoteIndex;
         while (curNote != targetNoteIndex)
         {
-            curNote += (curNote - targetNoteIndex > 0 ? -1 : 1);
+            curNote += curNote - targetNoteIndex > 0 ? -1 : 1;
             AudioPool.Instance.Play(NotesManager.Instance.notes[curNote].GetNoteAudioClip());
             notesAmount++;
             yield return new WaitForSeconds(timing);
@@ -106,6 +108,19 @@ public class MelodyManager : Singleton<MelodyManager>
     public void PointScored()
     {
         score.Value++;
+    }
+
+    public void TutorialMode(float tutorialSlidingSpeed)
+    {
+        _inTutorialMode = true;
+        _currentSlidingSpeed = tutorialSlidingSpeed;
+    }
+
+    public void EndTutorialMode()
+    {
+        _inTutorialMode = false;
+        _currentSlidingSpeed = slidingSpeed;
+        score.Value = 0;
     }
 
     private void OnDrawGizmosSelected() 

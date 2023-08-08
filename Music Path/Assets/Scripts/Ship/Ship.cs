@@ -10,8 +10,10 @@ public class Ship : MonoBehaviour
     public float moveDuration = .3f;
     public Ease moveEase = Ease.OutBack;
     public Action OnDie;
+    public Action OnTrigger;
     public float edgeMove = .2f;
     private int _currentNote = 4;
+    private bool _inTutorialMode = false;
 
     void Awake()
     {
@@ -52,12 +54,46 @@ public class Ship : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Die();
+        if(!_inTutorialMode)
+        {
+            Die();
+        }
+        else
+        {
+            OnTrigger?.Invoke();
+        }
     }
 
     private void Die()
     {
         transform.DOScale(Vector3.zero, .3f).SetEase(Ease.InBounce);
         OnDie?.Invoke();
+    }
+
+    public void TutorialMode()
+    {
+        _inTutorialMode = true;
+        DisableMove();
+    }
+
+    public void EndTutorialMode()
+    {
+        _inTutorialMode = false;
+        EnableMove();
+    }
+
+    public void EnableMove()
+    {   
+        TouchManager.Instance.OnMoveSwipe += Move;
+    }
+
+    public void DisableMove()
+    {
+        TouchManager.Instance.OnMoveSwipe -= Move;
+    }
+
+    public bool InTutorialMode()
+    {
+        return _inTutorialMode;
     }
 }

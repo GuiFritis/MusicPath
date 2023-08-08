@@ -146,15 +146,15 @@ MonoBehaviour:
   score: {fileID: 11400000, guid: 33a8336e4fdbe3447a1f397356930999, type: 2}
   volumeChangeHelper: {fileID: 2027618622389311200}
   targetVolume: -30
-  ship: {fileID: 0}
+  _ship: {fileID: 0}
   startSpeed: 4
   speedUp: 0.15
   minSpeed: 1.3
   rhythim: 0.18
   slideDelay: 0.08
   spawnX: 14
-  slidingSpeed: 10
-  slidingSpeedUp: 0.5
+  slidingSpeed: 7
+  slidingSpeedUp: 0.6
   maxSlidingSpeed: 40
 --- !u!114 &2027618622389311200
 MonoBehaviour:

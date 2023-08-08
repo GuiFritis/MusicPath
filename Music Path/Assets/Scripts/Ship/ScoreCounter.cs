@@ -31,7 +31,7 @@ public class ScoreCounter : MonoBehaviour
             {
                 MelodyManager.Instance.PointScored();
                 scoreVfx?.Play();
-                _timer = 0f;
+                _timer = 0f;   
             }
         }
         else
