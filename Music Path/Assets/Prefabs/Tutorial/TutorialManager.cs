@@ -11,13 +11,21 @@ namespace Tutorial
         public Ship ship;
 
         private int _currentStep = 0;
+        private string _tutorialStrPref = "_TutorialMode";
 
         void Start()
         {
-            MelodyManager.Instance.TutorialMode(tutorialSlidingSpeed);
-            TouchManager.Instance.OnTouchStart += NextStep;
-            tutorialSteps[_currentStep].StartStep(this);
-            ship.TutorialMode();
+            if(PlayerPrefs.GetInt(_tutorialStrPref, -1) <= 0)
+            {
+                MelodyManager.Instance.TutorialMode(tutorialSlidingSpeed);
+                TouchManager.Instance.OnTouchStart += NextStep;
+                tutorialSteps[_currentStep].StartStep(this);
+                ship.TutorialMode();
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         public void NextStep()
@@ -26,13 +34,14 @@ namespace Tutorial
             {
                 tutorialSteps[_currentStep].EndStep();
                 _currentStep++;
-                
+
                 if(_currentStep < tutorialSteps.Count)
                 {
                     tutorialSteps[_currentStep].StartStep(this);
                 }
                 else
                 {
+                    PlayerPrefs.SetInt(_tutorialStrPref, 1);
                     TouchManager.Instance.OnTouchStart -= NextStep;
                     MelodyManager.Instance.EndTutorialMode();
                     ship.EndTutorialMode();
