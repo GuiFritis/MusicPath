@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Padrao.Core.Singleton;
 
-public abstract class PoolBase<T, X> : MonoBehaviour where T : Behaviour where X : MonoBehaviour
+public abstract class PoolBase<T, X> : Singleton<X> where T : Behaviour where X : MonoBehaviour
 {
-    public static X Instance;
     public int preWarmSize = 2;
     public bool finite = false;
     public int maxPoolSize = 1000;
@@ -14,13 +14,9 @@ public abstract class PoolBase<T, X> : MonoBehaviour where T : Behaviour where X
     protected List<T> _pool = new List<T>();
     protected int _currentIndex;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
-        if(Instance == null){
-            Instance = GetComponent<X>();
-        } else {
-            Destroy(gameObject);
-        }
+        base.Awake();
         InitPool();
     }
 

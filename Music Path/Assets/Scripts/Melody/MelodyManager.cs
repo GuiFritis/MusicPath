@@ -31,6 +31,7 @@ public class MelodyManager : Singleton<MelodyManager>
     public float slidingSpeed = 8f;
     public float slidingSpeedUp = .2f;
     public float maxSlidingSpeed = 40f;
+    public System.Action<float> OnSlidingSpeedChange;
     private float _currentSlidingSpeed = 8f;
     private bool _inTutorialMode = false;
 
@@ -39,6 +40,7 @@ public class MelodyManager : Singleton<MelodyManager>
         score.Value = 0;
         _currentSpeed = startSpeed;
         _currentSlidingSpeed = slidingSpeed;
+        OnSlidingSpeedChange?.Invoke(_currentSlidingSpeed);
         _timer = _currentNote - 1.5f;
     }
 
@@ -59,6 +61,7 @@ public class MelodyManager : Singleton<MelodyManager>
                 if(_currentSlidingSpeed < maxSlidingSpeed)
                 {
                     _currentSlidingSpeed += slidingSpeedUp;
+                    OnSlidingSpeedChange?.Invoke(_currentSlidingSpeed);
                 }
             }
         }
@@ -123,6 +126,11 @@ public class MelodyManager : Singleton<MelodyManager>
         _currentSlidingSpeed = slidingSpeed;
         score.Value = 0;
         _timer = _currentSpeed - 1f;
+    }
+
+    public float GetCurrentSlidingSpeed()
+    {
+        return _currentSlidingSpeed;
     }
 
     private void OnDrawGizmosSelected() 

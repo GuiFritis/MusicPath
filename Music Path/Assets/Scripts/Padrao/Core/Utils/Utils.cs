@@ -29,6 +29,18 @@ namespace Padrao.Core.Utils
             return arr[Random.Range(0, arr.Length)];
         }
 
+        public static void Shuffle<T>(this List<T> list)  
+        {  
+            int n = list.Count;  
+            while (n > 1) {  
+                n--;  
+                int k = Random.Range(0, list.Count);  
+                T value = list[k];  
+                list[k] = list[n];  
+                list[n] = value;  
+            }  
+        }
+
         public static Vector3 RandowPositionAround2D(this Vector3 position, float maxDistance = 1.5f)
         {
             position.x += Random.Range(-maxDistance, maxDistance);
