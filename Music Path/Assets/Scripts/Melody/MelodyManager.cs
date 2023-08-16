@@ -10,6 +10,7 @@ public class MelodyManager : Singleton<MelodyManager>
     public VolumeChangeHelper volumeChangeHelper;
     [Tooltip("Volume at which player's note will get when melody is playing")]
     public float targetVolume = -20f;
+    public AudioSource melodyPointAudioSrc;
     [Space]
     [SerializeField]
     private Ship _ship;
@@ -111,6 +112,10 @@ public class MelodyManager : Singleton<MelodyManager>
 
     public void PointScored()
     {
+        if(Mathf.Abs(_lastNote - _currentNote) == 8)
+        {
+            melodyPointAudioSrc?.Play();
+        }        
         score.Value++;
     }
 
