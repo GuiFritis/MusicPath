@@ -6,6 +6,7 @@ using TMPro;
 public class ToneButton : MonoBehaviour
 {
     public TextMeshProUGUI toneText;
+    public AudioSource audioSrc;
 
     void Start()
     {
@@ -14,7 +15,10 @@ public class ToneButton : MonoBehaviour
 
     public void ChangeTone()
     {
+        audioSrc.Stop();
         GameManager.Instance.IncreaseTone();
         toneText.text = GameManager.Instance.GetToneName();
+        audioSrc.clip = GameManager.Instance.GetTone().mainNote;
+        audioSrc.Play();
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3db97d0aeff11c448cd35e582061e4a, type: 3}
   m_Name: B
   m_EditorClassIdentifier: 
+  mainNote: {fileID: 8300000, guid: 47c27e93a86ca104c88872f456057d2b, type: 3}
   notes:
   - {fileID: 8300000, guid: 42db76ebf59642f4392567ecdb0341e9, type: 3}
   - {fileID: 8300000, guid: 7fc8beb7a11371b4e9e7379c34847d01, type: 3}

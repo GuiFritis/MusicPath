@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3db97d0aeff11c448cd35e582061e4a, type: 3}
   m_Name: D#
   m_EditorClassIdentifier: 
+  mainNote: {fileID: 8300000, guid: e00bf741a744cec4ea4ca84ecfccbc90, type: 3}
   notes:
   - {fileID: 8300000, guid: d871a1c206febd249915d43d321294b4, type: 3}
   - {fileID: 8300000, guid: 4de3542b585c50e409a5a20b2276cc38, type: 3}
