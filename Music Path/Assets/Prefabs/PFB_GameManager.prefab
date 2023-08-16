@@ -46,9 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tones:
   - {fileID: 11400000, guid: 74e6f8762dfecf046a4f78119073ac69, type: 2}
+  - {fileID: 11400000, guid: 4a3d42fb11052bd48acbee502f1c3a54, type: 2}
   - {fileID: 11400000, guid: 646410f73034a834baefba45a907871a, type: 2}
+  - {fileID: 11400000, guid: a268f965e98d6464fa0818bdb23df032, type: 2}
   - {fileID: 11400000, guid: 8c6784f9ef5cfa44996e5d02284f3ea0, type: 2}
   - {fileID: 11400000, guid: 5c469dff1e5dfd848adf64483a9e3aa4, type: 2}
+  - {fileID: 11400000, guid: 1b28dc8f8f094ef46a184abeed8568b6, type: 2}
+  - {fileID: 11400000, guid: 6a7140c7ca4c5774eb7035cf67dcaca0, type: 2}
+  - {fileID: 11400000, guid: 4fbe5efa8b1577e4398d592c8ce8bdc6, type: 2}
+  - {fileID: 11400000, guid: 0697fe3c2d2973447a032e4368e5b338, type: 2}
+  - {fileID: 11400000, guid: 53e70d51a8f86b34aba33bfe75a20b93, type: 2}
+  - {fileID: 11400000, guid: 70f5f0395986a7643b99e099e56e46e9, type: 2}
   keyPrefTone: Tone
-  playerShip: {fileID: 0}
-  gameOverScript: {fileID: 0}

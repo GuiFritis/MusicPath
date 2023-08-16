@@ -4993,14 +4993,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7426125950456341009, guid: eca61ccb4bd18ea40b9d0e6948feac6e, type: 3}
-      propertyPath: playerShip
-      value: 
-      objectReference: {fileID: 2004660624}
-    - target: {fileID: 7426125950456341009, guid: eca61ccb4bd18ea40b9d0e6948feac6e, type: 3}
-      propertyPath: gameOverScript
-      value: 
-      objectReference: {fileID: 1441999428}
     - target: {fileID: 7426125950456341010, guid: eca61ccb4bd18ea40b9d0e6948feac6e, type: 3}
       propertyPath: m_RootOrder
       value: 3
