@@ -46,7 +46,7 @@ AudioSource:
   m_GameObject: {fileID: 433181683}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 63884530778742933, guid: ab8c8b2058fc6dd41a47cf669f4a7678, type: 2}
+  OutputAudioMixerGroup: {fileID: -7737098611086161323, guid: ab8c8b2058fc6dd41a47cf669f4a7678, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -285,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1802792185543791230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3206553632
+    rgba: 3204448256
   m_fontColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0.7490196}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6, g: 0.6, b: 0.6, a: 0.4}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.4}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

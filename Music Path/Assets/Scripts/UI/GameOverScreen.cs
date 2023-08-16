@@ -7,6 +7,7 @@ using Save;
 
 public class GameOverScreen : MonoBehaviour
 {
+    public AudioSource gameOverAudio;
     public TextMeshProUGUI scoreText;
     public SOInt score;
     public float duration = .3f;
@@ -50,8 +51,11 @@ public class GameOverScreen : MonoBehaviour
 
     private IEnumerator ShowGameOverScreen()
     {
+
         panel.DOColor(_panelColor, duration);
         yield return new WaitForSeconds(duration);
+        
+        gameOverAudio?.Play();
 
         scoreText.text = (score.Value).ToString();
         scoreBox.transform.DOScale(_scoreBoxScale, duration).SetEase(Ease.OutBounce);
