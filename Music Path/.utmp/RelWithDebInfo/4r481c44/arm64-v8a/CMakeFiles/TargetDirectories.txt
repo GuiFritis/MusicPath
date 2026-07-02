@@ -1,0 +1,5 @@
+C:/Users/guilh/OneDrive/Documentos/UnityProjects/MusicPath/Music Path/.utmp/RelWithDebInfo/4r481c44/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/guilh/OneDrive/Documentos/UnityProjects/MusicPath/Music Path/.utmp/RelWithDebInfo/4r481c44/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/guilh/OneDrive/Documentos/UnityProjects/MusicPath/Music Path/.utmp/RelWithDebInfo/4r481c44/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Users/guilh/OneDrive/Documentos/UnityProjects/MusicPath/Music Path/.utmp/RelWithDebInfo/4r481c44/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Users/guilh/OneDrive/Documentos/UnityProjects/MusicPath/Music Path/.utmp/RelWithDebInfo/4r481c44/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir

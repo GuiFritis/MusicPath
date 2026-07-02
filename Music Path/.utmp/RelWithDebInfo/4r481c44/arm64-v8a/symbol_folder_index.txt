@@ -1,0 +1,1 @@
+C:\Users\guilh\OneDrive\Documentos\UnityProjects\MusicPath\Music Path\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\4r481c44\obj\arm64-v8a
